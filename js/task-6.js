@@ -1,10 +1,19 @@
 //Напиши скрипт, который бы при потере фокуса на инпуте, проверял его содержимое на правильное количество символов.
 
-const fieldRef = document.getElementById('validation-input');
+const inputRef = document.querySelector('#validation-input');
 
-const validValue = fieldRef.dataset.length;
-fieldRef.addEventListener('change', event => {
-  event.target.value.length === +validValue
-    ? fieldRef.setAttribute('class', 'valid')
-    : fieldRef.setAttribute('class', 'invalid');
-});
+inputRef.addEventListener('blur', inputFocus);
+
+function inputFocus() {
+    if (inputRef.value.length == inputRef.dataset.length) {
+        inputRef.classList.add('valid');
+        inputRef.classList.remove('invalid');
+      //  console.log('green');
+    } else {
+        inputRef.classList.add('invalid');
+        inputRef.classList.remove('valid');
+     //   console.log('red');
+    }
+}
+
+console.log(inputRef.dataset.length);
